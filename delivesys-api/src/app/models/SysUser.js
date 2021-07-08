@@ -7,6 +7,10 @@ module.exports = (sequelize, DataTypes) => {
   const SysUser = sequelize.define(
     "SysUser",
     {
+      UserId: {
+        type: DataTypes.INTEGER,
+        primaryKey: true
+      },
       Username: {
         type: DataTypes.STRING,
         unique: MSG_ERRORS.isUnique("email"),
@@ -19,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       tableName: "sysusers",
+      timestamps: false,
       hooks: {
         beforeCreate: (user) => {
           const salt = bcrypt.genSaltSync(8);
@@ -36,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   SysUser.prototype.validPassword = async function (password) {
-    return await bcrypt.compare(password, this.password);
+    return await bcrypt.compare(password, this.Password);
   };
 
   return SysUser;

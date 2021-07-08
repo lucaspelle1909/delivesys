@@ -4,18 +4,20 @@ import jwt from "jsonwebtoken";
 
 const auth = async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username: Username, password: Password } = req.body;
+
+    if(!Username || !Password) throw { message: 'Informe o usuário e senha'};
 
     const user = await SysUser.findOne({
       where: {
-        username,
+        Username,
       },
     });
 
     let isValid = false;
 
     if (user) {
-      const validPassword = await SysUser.validPassword(password);
+      const validPassword = await user.validPassword(Password);
 
       if (validPassword) isValid = true;
     }
@@ -39,6 +41,7 @@ const auth = async (req, res) => {
     return res.status(400).json(err);
   }
 };
+
 export default {
   auth,
 };
