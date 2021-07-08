@@ -1,10 +1,12 @@
-import Vue from 'vue'
 import axios from 'axios'
 
-axios.defaults.baseURL = 'https://localhost:44341/'
-
-Vue.use({
-    install(Vue) {
-        Vue.prototype.$http = axios
-    }
-})
+export default () => {
+    return axios.create({
+        baseURL: process.env.VUE_APP_API_URI,
+        withCredentials: false,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+}

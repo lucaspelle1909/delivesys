@@ -1,10 +1,11 @@
 import Vue from 'vue'
-import App from './App.vue'
-import vuetify from '@/config/vuetify.js'
-import router from '@/config/router.js'
-import store from '@/store/store.js'
+import App from '@/App.vue'
+import vuetify from '@/config/vuetify'
+import router from '@/config/router'
+import Axios from '@/config/axios'
+import store from '@/stores/store'
 
-import '@/config/axios.js'
+Vue.prototype.$axios = Axios();
 
 Vue.config.productionTip = false
 

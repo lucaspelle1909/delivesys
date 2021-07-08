@@ -13,11 +13,7 @@
 		components: {
 			Footer,
 			AppBar,
-			NavigationDrawer,
-			AddButton,
-			AddDialog,
-			EditDialog,
-			DeleteDialog
+			NavigationDrawer
 		},
 	};
 </script>
