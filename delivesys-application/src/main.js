@@ -1,14 +1,17 @@
 import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-import vuetify from './plugins/vuetify'
+import App from '@/App.vue'
+import vuetify from '@/config/vuetify'
+import router from '@/config/router'
+import Axios from '@/config/axios'
+import store from '@/stores/store'
+
+Vue.prototype.$axios = Axios();
 
 Vue.config.productionTip = false
 
 new Vue({
+  vuetify,
   router,
   store,
-  vuetify,
   render: h => h(App)
 }).$mount('#app')
