@@ -16,73 +16,29 @@ const create = async (req, res) => {
   try {
     const { body } = req;
 
-    const data = await Category.create(
+    const data = await DeliveryCompany.create(
       {
         ...body,
-        companyId: req.companyId,
+        // UserId: req.userId,
       },
-      {
-        transaction,
-      }
     );
 
-    await createSubcategories(subcategories, data.id, transaction);
-
-    await transaction.commit();
-
-    const createdCategory = await getCategoryWithSubCategories(data.id);
-
-    return res.status(200).json(createdCategory);
+    return res.status(200).json(data);
   } catch (err) {
-    
-    await transaction.rollback();
-
     console.log(err);
     return res.status(400).json(err);
   }
 };
 
-const getCategoryWithSubCategories = async (categoryId) => {
-  return await Category.findOne({
-    where: {
-      id: categoryId,
-    },
-    include: [
-      {
-        model: SubCategory,
-        as: "subcategories",
-      },
-    ],
-  });
-};
-
-const createSubcategories = async (subcategories, categoryId, transaction) => {
-  for (const subcat of subcategories) {
-    delete subcat["fakeId"];
-
-    await SubCategory.create(
-      {
-        ...subcat,
-        categoryId,
-      },
-      {
-        transaction,
-      }
-    );
-  }
-};
-
 const update = async (req, res) => {
   try {
-    const { categoryId: id } = req.params;
-    const data = await Category.update(req.body, {
-      where: { id },
+    const { deliveryCompanyId } = req.params;
+    const data = await DeliveryCompany.update(req.body, {
+      where: { deliveryCompanyId },
       returning: true,
     });
 
-    const result = await getCategoryWithSubCategories(id);
-
-    return res.status(200).json(result);
+    return res.status(200).json(data);
   } catch (err) {
     return res.status(400).json(err);
   }
@@ -90,13 +46,14 @@ const update = async (req, res) => {
 
 const destroy = async (req, res) => {
   try {
-    const { categoryId: id } = req.params;
-    const data = await Category.destroy({
-      where: { id },
+    const { deliveryCompanyId } = req.params;
+    const data = await DeliveryCompany.destroy({
+      where: { deliveryCompanyId },
     });
 
     return res.status(200).json(data);
   } catch (err) {
+    console.log(err);
     return res.status(400).json(err);
   }
 };
