@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 const auth = async (req, res) => {
   try {
-    const { username: Username, password: Password } = req.body;
+    const { Username, Password } = req.body;
 
     if(!Username || !Password) throw { message: 'Informe o usuário e senha'};
 
@@ -27,7 +27,7 @@ const auth = async (req, res) => {
     }
 
     const token = jwt.sign(
-      { userId: user.id },
+      { userId: user.UserId },
       process.env.JWT_SECRET,
       {
         expiresIn: 14515200,

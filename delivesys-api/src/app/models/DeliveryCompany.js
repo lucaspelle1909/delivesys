@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       DeliveryCompanyId: {
         type: DataTypes.INTEGER,
+        autoIncrement: true,
         primaryKey: true
       },
       Name: {

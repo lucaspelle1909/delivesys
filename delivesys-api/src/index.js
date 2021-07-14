@@ -18,9 +18,9 @@ app.use(
 );
 app.use(cookieParser());
 
-// app.use(require("./app/middlewares/Auth"));
+app.post("/auth", AuthController.auth);
 
-app.post("/auth", AuthController.auth)
+app.use(require("./app/middlewares/Auth"));
 app.use("/delivery-company", deliveryCompanyRoutes);
 
 // generate hash

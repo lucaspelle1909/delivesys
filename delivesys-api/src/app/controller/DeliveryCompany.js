@@ -15,11 +15,11 @@ const create = async (req, res) => {
 
   try {
     const { body } = req;
-
+    
     const data = await DeliveryCompany.create(
       {
         ...body,
-        // UserId: req.userId,
+        UserId: req.userId,
       },
     );
 
