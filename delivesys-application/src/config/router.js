@@ -1,17 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-const App = () => import(
+const Login = () => import(
   /* webpackMode: "lazy" */
   /* webpackPreload: true */
-  /* webpackChunkName: "AppCodeRedirect" */
+  /* webpackChunkName: "Login" */
   '@/components/login/App.vue'
 )
 
 const DeliveryCompanies = () => import(
   /* webpackMode: "lazy" */
   /* webpackPreload: true */
-  /* webpackChunkName: "AppCodeRedirect" */
+  /* webpackChunkName: "DeliveryCompanies" */
   '@/components/deliverycompany/DeliveryCompanies.vue'
 )
 
@@ -21,8 +21,8 @@ const router = new Router({
   mode: 'history',
   routes: [{
       path: '/',
-      name: 'App',
-      component: App
+      name: 'Login',
+      component: Login
   },
   {
     path: '/DeliveryCompanies',

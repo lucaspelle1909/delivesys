@@ -54,7 +54,7 @@ export default {
             localStorage.setItem('accessToken', response.data.token)
             localStorage.setItem('expirationToken', store.state.expirationToken)
             this._vm.$axios.defaults.headers.common['Authorization'] = 'Bearer '.concat(response.data.token)
-            router.push("/home")
+            router.push("/DeliveryCompanies")
             return
         },
 

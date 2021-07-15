@@ -15,8 +15,7 @@
 					</v-list-item-avatar>
 					<v-list-item-content>
 						<v-list-item-title class="title mt-2 pb-2"
-							>Menu</v-list-item-title
-						>
+							>Menu</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>
 

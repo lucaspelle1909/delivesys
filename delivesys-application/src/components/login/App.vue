@@ -2,7 +2,6 @@
 	<v-app>
 		<AppBar />
 		<Login />
-		<router-view></router-view>
 	</v-app>
 </template>
 <script>
@@ -11,7 +10,7 @@
 	export default {
 		components: {
 			AppBar,
-			Login,
+			Login
 		},
 	};
 </script>
