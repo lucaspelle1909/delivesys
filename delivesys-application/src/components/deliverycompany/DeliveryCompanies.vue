@@ -1,17 +1,16 @@
 <template>
 	<v-app>
 		<AppBar />
-		<Login />
-		<router-view></router-view>
+		<v-main><DeliveryCompaniesTable /></v-main>
 	</v-app>
 </template>
 <script>
 	import AppBar from "@/components/template/layout/AppBar.vue";
-	import Login from "@/components/login/Login.vue";
+	import DeliveryCompaniesTable from "@/components/deliverycompany/DeliveryCompaniesTable.vue";
 	export default {
 		components: {
 			AppBar,
-			Login,
+			DeliveryCompaniesTable
 		},
 	};
 </script>
