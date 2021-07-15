@@ -2,6 +2,7 @@
 	<v-app>
 		<AppBar />
 		<Login />
+		<router-view></router-view>
 	</v-app>
 </template>
 <script>
