@@ -1,32 +1,40 @@
 <template>
-	<v-card style="width: 35%" class="ma-auto py-10" elevation="4">
-		<v-form ref="login" v-model="loginValid" class="ma-auto">
-			<v-container style="width: 55%">
-				<v-row>
-					<v-text-field
-						ref="userId"
-						v-model="user.UserId"
-						label="Usuário"
-						required
-					></v-text-field>
-				</v-row>
-				<v-row class="my-3">
-					<v-text-field
-						@keyup.enter="submitLogin"
-						v-model="user.Password"
-						label="Senha"
-						type="password"
-						required
-					></v-text-field>
-				</v-row>
-			</v-container>
-			<v-row class="justify-center">
-				<v-btn class="px-5 white--text" :color="color" @click="submitLogin">
-					Login
-				</v-btn>
-			</v-row>
-		</v-form>
-	</v-card>
+	<v-sheet style='flex:1 1 !important' class='d-flex justify-center'>
+		<v-card style='min-width:40%' class="ma-auto pa-2 d-flex flex-column" elevation="4">
+			<v-img
+			src="@/assets/logo-delivesys.png"
+			style='min-width: 400px'
+			aspect-ratio="3"
+			contain />
+			<v-form ref="login" v-model="loginValid" class="px-8">
+				<v-card-text>
+					<v-row align='center'>
+						<v-text-field
+							ref="userId"
+							v-model="user.UserId"
+							label="Usuário"
+							required
+						></v-text-field>
+					</v-row>
+					<v-row align='center'>
+						<v-text-field
+							@keyup.enter="submitLogin"
+							v-model="user.Password"
+							label="Senha"
+							type="password"
+							required
+						></v-text-field>
+					</v-row>
+				</v-card-text>
+				<v-card-actions>
+					<v-spacer />
+					<v-btn class="white--text px-5 py-1" :color="color" @click="submitLogin">
+						Login
+					</v-btn>
+				</v-card-actions>
+			</v-form>
+		</v-card>
+	</v-sheet>
 </template>
 <script>
 	export default {
