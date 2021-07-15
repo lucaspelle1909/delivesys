@@ -5,7 +5,7 @@ import cors from "cors";
 
 
 import bcrypt from 'bcrypt';
-import clientRoutes from './app/router/Client';
+import sysUserRoutes from './app/router/SysUser';
 import AuthController from "./app/controller/Auth";
 
 const app = express();
@@ -18,10 +18,10 @@ app.use(
 );
 app.use(cookieParser());
 
-// app.use(require("./app/middlewares/Auth"));
+app.post("/auth", AuthController.auth);
 
-app.post("/auth", AuthController.auth)
-app.use("/clients", clientRoutes);
+app.use(require("./app/middlewares/Auth"));
+app.use("/sysusers", sysUserRoutes);
 
 // generate hash
 app.post("/hash", (req, res) => {
