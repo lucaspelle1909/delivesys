@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         unique: MSG_ERRORS.isUnique("email"),
         allowNull: false,
       },
+      PermissionId: DataTypes.INTEGER,
       Password: {
         allowNull: false,
         type: DataTypes.STRING,
@@ -28,13 +29,13 @@ module.exports = (sequelize, DataTypes) => {
       hooks: {
         beforeCreate: (user) => {
           const salt = bcrypt.genSaltSync(8);
-          user.password = bcrypt.hashSync(user.password, salt);
+          user.Password = bcrypt.hashSync(user.Password, salt);
         },
         beforeBulkUpdate: ({ attributes: user }) => {
           // console.log(user);
-          if (user.password) {
+          if (user.Password) {
             const salt = bcrypt.genSaltSync(8);
-            user.password = bcrypt.hashSync(user.password, salt);
+            user.Password = bcrypt.hashSync(user.Password, salt);
           }
         },
       },
