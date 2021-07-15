@@ -11,7 +11,7 @@
 					<v-row align='center'>
 						<v-text-field
 							ref="userId"
-							v-model="user.UserId"
+							v-model="user.Username"
 							label="Usuário"
 							required
 						></v-text-field>

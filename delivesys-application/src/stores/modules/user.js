@@ -1,7 +1,5 @@
-import axios from 'axios'
 import router from '@/config/router'
 import { getMessageError } from '@/config/utils'
-import { ValidateAxiosResponse } from '@/config/utils'
 
 export default {
     state: {
@@ -35,8 +33,8 @@ export default {
     },
     actions: {
         async submitLogin(store, user) {
-            store.state.errorOnLogin = false            
-            await axios.post(process.env.VUE_APP_TOKEN_URI + process.env.VUE_APP_API_TOKEN_SERVICE, user)
+            store.state.errorOnLogin = false
+            await this._vm.$axios.post('auth', user)
                 .then((res) => {
                     store.dispatch("loginSucessuful", res)
                 })
@@ -46,17 +44,16 @@ export default {
         },
 
         loginSucessuful(store, response) {
-            response = ValidateAxiosResponse(response.data)
-            if (!response.authenticated) {
+            if (!response.data.token) {
                 store.state.errorOnLogin = true
                 return;
             }
             store.state.isUserLogged = true;
-            store.state.accessToken = response.accessToken;
+            store.state.accessToken = response.data.token;
             store.state.expirationToken = new Date(response.expiration).getTime()
-            localStorage.setItem('accessToken', response.accessToken)
+            localStorage.setItem('accessToken', response.data.token)
             localStorage.setItem('expirationToken', store.state.expirationToken)
-            this._vm.$axios.defaults.headers.common['Authorization'] = 'Bearer '.concat(response.accessToken)
+            this._vm.$axios.defaults.headers.common['Authorization'] = 'Bearer '.concat(response.data.token)
             router.push("/home")
             return
         },
@@ -67,27 +64,16 @@ export default {
             await store.dispatch("requestToken")
         },
 
-        async requestToken(store) {
-            await axios.post(process.env.VUE_APP_TOKEN_URI + process.env.VUE_APP_API_TOKEN_SERVICE, {
-                UserId: process.env.VUE_APP_U_AUTHORIZATION,
-                Password: process.env.VUE_APP_S_AUTHORIZATION
-            })
-                .then(response => store.dispatch('authorizationSuccessful', response))
-                .catch(() => store.dispatch('authorizationFailed'))
-            return true
-        },
-
         async authorizationSuccessful(store, response) {
-            var responseJson = ValidateAxiosResponse(response.data)
-            if (!responseJson.authenticated) {
+            if (!response.data.token) {
                 store.dispatch('authorizationFailed')
                 return;
             }
-            store.state.accessToken = responseJson.accessToken;
+            store.state.accessToken = response.data.token;
             store.state.expirationToken = new Date(responseJson.expiration).getTime();
-            localStorage.setItem('accessToken', responseJson.accessToken)
+            localStorage.setItem('accessToken', response.data.token)
             localStorage.setItem('expirationToken', store.state.expirationToken)
-            this._vm.$axios.defaults.headers.common['Authorization'] = 'Bearer '.concat(responseJson.accessToken)
+            this._vm.$axios.defaults.headers.common['Authorization'] = 'Bearer '.concat(response.data.token)
         },
 
         authorizationFailed(store) {

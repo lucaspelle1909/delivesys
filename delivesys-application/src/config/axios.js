@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export default () => {
     return axios.create({
-        baseURL: process.env.VUE_APP_API_URI,
+        baseURL: 'http://localhost:3005/',
         withCredentials: false,
         headers: {
             'Accept': 'application/json',
