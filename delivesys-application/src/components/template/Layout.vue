@@ -6,9 +6,9 @@
 	</div>
 </template>
 <script>
-	import AppBar from "@/components/layout/AppBar.vue"
-	import Footer from "@/components/layout/Footer.vue"
-	import NavigationDrawer from "@/components/layout/NavigationDrawer.vue"
+	import AppBar from "@/components/template/layout/AppBar.vue"
+	import Footer from "@/components/template/layout/Footer.vue"
+	import NavigationDrawer from "@/components/template/layout/NavigationDrawer.vue"
 	export default {
 		components: {
 			Footer,
