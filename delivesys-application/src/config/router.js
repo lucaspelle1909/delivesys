@@ -11,15 +11,15 @@ const Login = () => import(
 const Home = () => import(
 	/* webpackMode: "lazy" */
 	/* webpackPreload: true */
-	/* webpackChunkName: "Login" */
+	/* webpackChunkName: "Home" */
 	'@/components/home/App.vue'
 )
 
-const DeliveryCompanies = () => import(
+const DeliverymanTable = () => import(
 	/* webpackMode: "lazy" */
 	/* webpackPreload: true */
-	/* webpackChunkName: "DeliveryCompanies" */
-	'@/components/deliveryCompany/App.vue'
+	/* webpackChunkName: "deliverymanTable" */
+	'@/components/deliveryman/App.vue'
 )
 
 Vue.use(Router)
@@ -37,9 +37,9 @@ const router = new Router({
 		component: Home
 	},
 	{
-		path: '/DeliveryCompanies',
-		name: 'DeliveryCompanies',
-		component: DeliveryCompanies
+		path: '/DeliverymanTable',
+		name: 'DeliverymanTable',
+		component: DeliverymanTable
 	}]
 })
 
