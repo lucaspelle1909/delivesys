@@ -12,6 +12,14 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         primaryKey: true
       },
+      FirstName: {
+        type: DataTypes.STRING,
+        allowNull: false, 
+      },
+      LastName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       Username: {
         type: DataTypes.STRING,
         unique: MSG_ERRORS.isUnique("email"),

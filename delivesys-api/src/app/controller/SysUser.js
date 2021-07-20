@@ -20,22 +20,24 @@ const create = async (req, res) => {
     const userData = await SysUser.create(
       {
         ...body,
-        PermissionId: 2,
+        PermissionId: body.PermissionId || 2,
       },
       {
         transaction,
       }
     );
 
-    const data = await DeliveryCompany.create(
-      {
-        ...body,
-        UserId: userData.UserId,
-      },
-      {
-        transaction,
-      }
-    );
+    if (userData.PermissionId == 2) {
+      const data = await DeliveryCompany.create(
+        {
+          ...body,
+          UserId: userData.UserId,
+        },
+        {
+          transaction,
+        }
+      );
+    }
 
     await transaction.commit();
 
@@ -58,15 +60,13 @@ const update = async (req, res) => {
       returning: true,
     });
 
-
-
     const data = await DeliveryCompany.update(
       {
         ...req.body,
       },
       {
-        where:{
-          UserId
+        where: {
+          UserId,
         },
         transaction,
       }
