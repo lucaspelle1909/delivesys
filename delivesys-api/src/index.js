@@ -21,7 +21,7 @@ app.use(cookieParser());
 
 app.post("/auth", AuthController.auth);
 
-// app.use(require("./app/middlewares/Auth"));
+app.use(require("./app/middlewares/Auth"));
 app.use("/sysusers", sysUserRoutes);
 app.use("/products", productRoutes);
 
