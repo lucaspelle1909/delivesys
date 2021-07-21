@@ -11,6 +11,21 @@ const index = async (req, res) => {
   }
 };
 
+const findDeliveryMan = async (req, res) => {
+  try {
+    const data = await SysUser.findAll({
+      where: {
+        PermissionId: 2
+      }
+    });
+
+    return res.status(200).json(data);
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json(err);
+  }
+};
+
 const create = async (req, res) => {
   const transaction = await sequelize.transaction();
 
@@ -102,6 +117,7 @@ const destroy = async (req, res) => {
 export default {
   index,
   create,
+  findDeliveryMan,
   update,
   destroy,
 };
