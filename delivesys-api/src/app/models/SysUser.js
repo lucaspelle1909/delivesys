@@ -54,5 +54,13 @@ module.exports = (sequelize, DataTypes) => {
     return await bcrypt.compare(password, this.Password);
   };
 
+
+  SysUser.associate = function (models) {
+    SysUser.hasOne(models.DeliveryCompany, {
+      foreignKey: "UserId",
+      as: "deliveryCompany"
+    });
+  };
+
   return SysUser;
 };
