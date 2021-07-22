@@ -31,5 +31,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
+
+  DeliveryCompany.associate = function (models) {
+    DeliveryCompany.belongsTo(models.SysUser, {
+      foreignKey: "UserId",
+      as: "sysuser"
+    });
+  };
+
   return DeliveryCompany;
 };

@@ -16,7 +16,7 @@ const findDeliveryMan = async (req, res) => {
     const data = await SysUser.findAll({
       where: {
         PermissionId: 2
-      }
+      },
     });
 
     return res.status(200).json(data);
