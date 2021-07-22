@@ -3,12 +3,19 @@ import { getMessageError } from '@/config/utils'
 
 export default {
     state: {
+        user: {},
         errorOnLogin: false,
         isUserLogged: false,
         accessToken: null,
         expirationToken: new Date('01/01/0001 00:00').getTime()
     },
     getters: {
+        user(state){
+            return state.user
+        },
+        fullName(state){
+            return state.user.firstName+' '+state.user.lastName
+        },
         errorOnLogin(state) {
             return state.errorOnLogin
         },
@@ -48,13 +55,15 @@ export default {
                 store.state.errorOnLogin = true
                 return;
             }
-            store.state.isUserLogged = true;
-            store.state.accessToken = response.data.token;
+            store.state.isUserLogged = true
+            response.data.user.FullName = response.data.user.FirstName +' '+ response.data.user.LastName
+            store.state.user = response.data.user
+            store.state.accessToken = response.data.token
             store.state.expirationToken = new Date(response.expiration).getTime()
             localStorage.setItem('accessToken', response.data.token)
             localStorage.setItem('expirationToken', store.state.expirationToken)
             this._vm.$axios.defaults.headers.common['Authorization'] = 'Bearer '.concat(response.data.token)
-            router.push("/DeliveryCompanies")
+            router.push("/Home")
             return
         },
 
@@ -70,7 +79,7 @@ export default {
                 return;
             }
             store.state.accessToken = response.data.token;
-            store.state.expirationToken = new Date(responseJson.expiration).getTime();
+            store.state.expirationToken = new Date(responseJson.expiration).getTime()
             localStorage.setItem('accessToken', response.data.token)
             localStorage.setItem('expirationToken', store.state.expirationToken)
             this._vm.$axios.defaults.headers.common['Authorization'] = 'Bearer '.concat(response.data.token)
@@ -86,18 +95,18 @@ export default {
             if (localStorage.accessToken != undefined &&
                 localStorage.expirationToken != undefined &&
                 localStorage.expirationToken > new Date().getTime()) {
-                return true;
+                return true
             }
-            return false;
+            return false
         },
 
         isUserExpired() {
             if (localStorage.accessToken != undefined &&
                 localStorage.expirationToken != undefined &&
                 localStorage.expirationToken < new Date().getTime()) {
-                return true;
+                return true
             }
-            return false;
+            return false
         },
 
         async logout(store) {

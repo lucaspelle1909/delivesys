@@ -22,6 +22,13 @@ const DeliverymanTable = () => import(
 	'@/components/deliveryman/App.vue'
 )
 
+const Products = () => import(
+	/* webpackMode: "lazy" */
+	/* webpackPreload: true */
+	/* webpackChunkName: "Products" */
+	'@/components/products/App.vue'
+)
+
 Vue.use(Router)
 
 const router = new Router({
@@ -40,6 +47,11 @@ const router = new Router({
 		path: '/DeliverymanTable',
 		name: 'DeliverymanTable',
 		component: DeliverymanTable
+	},
+	{
+		path: '/Products',
+		name: 'Products',
+		component: Products
 	}]
 })
 

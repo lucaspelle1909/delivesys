@@ -1,11 +1,18 @@
 <template>
 	<v-app>
+		<AppGlobalInicialization />
 		<transition name="slide-fade">
 			<router-view />
 		</transition>
 	</v-app>
 </template>
 <script>
+import AppGlobalInicialization from '@/components/template/AppGlobalInicialization.vue'
+export default {
+	components:{
+		AppGlobalInicialization
+	}
+}
 </script>
 <style>
 	html {

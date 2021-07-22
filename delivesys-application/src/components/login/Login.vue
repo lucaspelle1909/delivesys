@@ -57,10 +57,10 @@
 			submitLogin() {
 				if (this.$refs.login.value) {
 					this.$store.dispatch("submitLogin", this.user)
-					.then(() => {
-						if (this.errorOnLogin)
-							this.errorLogin();
-					});
+						.then(() => {
+							if (this.errorOnLogin)
+								this.errorLogin();
+						});
 				}
 			},
 			errorLogin() {

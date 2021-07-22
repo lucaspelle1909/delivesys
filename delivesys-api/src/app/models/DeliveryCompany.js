@@ -12,10 +12,6 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         primaryKey: true
       },
-      Name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
       CpfCnpj: {
         type: DataTypes.STRING,
         allowNull: true,

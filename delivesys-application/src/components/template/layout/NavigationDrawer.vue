@@ -53,7 +53,7 @@
 					{
 						title: "Entregadores",
 						icon: "mdi-forum",
-						routerPath: "/DeliveryCompanies",
+						routerPath: "/DeliverymanTable",
 					},
 					{
 						title: "Produtos",
