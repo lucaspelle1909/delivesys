@@ -7,7 +7,7 @@
 					<v-row>
 						<v-col cols="12" sm="6" md="4">
 							<v-text-field
-								v-model="item.name"
+								v-model="item.Name"
 								label="Nome"
 								:rules="[(v) => !!v || 'Este campo não pode ser vazio']"
 								required
@@ -15,7 +15,7 @@
 						</v-col>
 						<v-col cols="12" sm="6" md="4">
 							<v-text-field
-								v-model="item.valueAmount"
+								v-model="item.ValueAmount"
 								label="Preço"
 								:rules="[(v) => !!v || 'Este campo não pode ser vazio']"
 								required
@@ -99,7 +99,6 @@ export default {
 			else {
 				this.item = {...this.$store.getters.getItem};
 				this.btnConfirm = "Salvar";
-				console.log(this.item)
 			}
 		},
 	mounted() {

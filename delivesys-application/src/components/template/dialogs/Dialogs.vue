@@ -30,9 +30,6 @@ export default {
             this.$store.dispatch("closeDialog");
         },
     },
-    created(){
-        console.log('test')
-    }
 }
 </script>
 

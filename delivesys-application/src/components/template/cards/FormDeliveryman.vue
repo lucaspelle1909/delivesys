@@ -23,7 +23,7 @@
 						</v-col>
 						<v-col cols="12" sm="6" md="4">
 							<v-text-field
-								v-model="item.CpfCnpj"
+								v-model="item.deliveryCompany.CpfCnpj"
 								label="CPF/CNPJ"
 								:rules="[(v) => !!v || 'Este campo não pode ser vazio']"
 								required
@@ -123,6 +123,7 @@ export default {
 				this.item = {};
 			else {
 				this.item = {...this.$store.getters.getItem};
+				this.item.deliveryCompany = {...this.$store.getters.getItem.deliveryCompany};
 				this.btnConfirm = "Salvar";
 			}
 		},

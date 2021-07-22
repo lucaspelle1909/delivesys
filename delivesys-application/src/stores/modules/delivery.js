@@ -26,18 +26,26 @@ export default {
                 .then(() => {
                     store.dispatch('getDeliveryman')
                 })
+                .finally(() => {
+                    store.dispatch('closeDialog')
+                })
         },
         async updateDeliveryman(store, deliveryman){
             await this._vm.$axios.put('/sysusers/'+ deliveryman.UserId, deliveryman)
-                .then((res) => {
-                    store.state.deliveryman = res.data.deliveryman
+                .then(() => {
                     store.dispatch('getDeliveryman')
+                })
+                .finally(() => {
+                    store.dispatch('closeDialog')
                 })
         },
         async deleteDeliveryman(store, deliveryId){
             await this._vm.$axios.delete('/sysusers/'+ deliveryId)
                 .then(() => {
                     store.dispatch('getDeliveryman')
+                })
+                .finally(() => {
+                    store.dispatch("closeAlertDialog");
                 })
         }
     }

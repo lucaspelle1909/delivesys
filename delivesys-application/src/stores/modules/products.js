@@ -15,7 +15,7 @@ export default {
             store.commit('loadingTable', true)
             await this._vm.$axios.get('products')
             .then((res) => {
-                store.state.products = res.data.products
+                store.state.products = res.data
             })
             .finally(() => {
                 store.commit('loadingTable', false)
@@ -23,19 +23,17 @@ export default {
         },
         async addProduct(store, product){
             await this._vm.$axios.post('products', product)
-            .then((res) => {
-                store.state.products = res.data.products
-                store.dispatch(getProducts)
+            .then(() => {
+                store.dispatch('getProducts')
             })
             .finally(() => {
                 store.dispatch("closeDialog");
             })
         },
         async updateProduct(store, product){
-            await this._vm.$axios.put('products', product)
-            .then((res) => {
-                store.state.products = res.data.products
-                store.dispatch(getProducts)
+            await this._vm.$axios.put('products/'+ product.ItemId, product)
+            .then(() => {
+                store.dispatch('getProducts')
             })
             .finally(() => {
                 store.dispatch("closeDialog");
@@ -43,10 +41,9 @@ export default {
             
         },
         async deleteProduct(store, productId){
-            await this._vm.$axios.delete('products', productId)
-            .then((res) => {
-                store.state.products = res.data.products
-                store.dispatch(getProducts)
+            await this._vm.$axios.delete('products/'+ productId)
+            .then(() => {
+                store.dispatch('getProducts')
             })
             .finally(() => {
                 store.dispatch("closeAlertDialog");

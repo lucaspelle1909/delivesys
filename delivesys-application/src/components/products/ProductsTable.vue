@@ -43,24 +43,24 @@
 <script>
   export default {
     data: () => ({
-      dialog: false,
-      dialogDelete: false,
-      products: [],
       headers: [
         {
           text: 'Id',
           align: 'start',
           sortable: false,
-          value: 'itemId',
+          value: 'ItemId',
         },
-        { text: 'Nome', value: 'name' },
-        { text: 'Preço', value: 'valueAmount' },
+        { text: 'Nome', value: 'Name' },
+        { text: 'Preço', value: 'ValueAmount' },
         { text: 'Ações', value: 'actions', sortable: false }
       ],
     }),
     computed: {
         loadingTable(){
-            return this.$store.getters.loadingTable;
+            return this.$store.getters.loadingTable
+        },
+        products(){
+            return this.$store.getters.products
         }
     },
     methods: {
@@ -69,21 +69,20 @@
 		},
         editProduct(item) {
             this.$store.dispatch('showDialog', 2)
-            this.$store.dispatch("setItem", item);
+            this.$store.dispatch("setItem", item)
         },
         deleteProduct(item) {
             var alert = {
                 title: "Remover loja",
                 message: "Deseja Remover esta loja?",
                 callStore: "deleteProduct",
-                parameterStore: item.id,
+                parameterStore: item.ItemId,
             };
-            this.$store.dispatch("openAlertDialog", alert);
+            this.$store.dispatch("openAlertDialog", alert)
         },
     },
     created() {
         this.$store.dispatch('getProducts');
-        this.products = this.$store.getters.products;
     },
   }
 </script>

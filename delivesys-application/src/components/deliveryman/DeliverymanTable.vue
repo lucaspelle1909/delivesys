@@ -62,7 +62,7 @@
 				sortable: false,
 				value: 'FullName',
 				},
-				{ text: 'CPF/CNPJ', value: 'CpfCnpj' },
+				{ text: 'CPF/CNPJ', value: 'deliveryCompany.CpfCnpj' },
 				{ text: 'Usuário', value: 'Username' },
 				{ text: 'Ações', value: 'actions', sortable: false }
 			],
@@ -92,8 +92,7 @@
 				callStore: "deleteDeliveryman",
 				parameterStore: item.UserId,
 			};
-			console.log(item)
-        	this.$store.dispatch("closeAlertDialog", alert);
+        	this.$store.dispatch("openAlertDialog", alert);
       	},
     },
 	created () {

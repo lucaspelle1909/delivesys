@@ -17,6 +17,9 @@ const findDeliveryMan = async (req, res) => {
       where: {
         PermissionId: 2
       },
+      include: {
+        all: true
+      }
     });
 
     return res.status(200).json(data);
