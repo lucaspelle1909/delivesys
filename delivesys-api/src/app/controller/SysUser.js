@@ -15,7 +15,7 @@ const findDeliveryMan = async (req, res) => {
   try {
     const data = await SysUser.findAll({
       where: {
-        PermissionId: 2
+        PermissionId: 2,
       },
     });
 
@@ -75,17 +75,20 @@ const update = async (req, res) => {
       returning: true,
     });
 
-    const data = await DeliveryCompany.update(
-      {
-        ...req.body,
-      },
-      {
-        where: {
-          UserId,
+    if (req.body.deliveryCompany) {
+      await DeliveryCompany.update(
+        {
+          ...req.body.deliveryCompany,
         },
-        transaction,
-      }
-    );
+        {
+          where: {
+            UserId,
+          },
+          transaction,
+        }
+      );
+    }
+
     await transaction.commit();
 
     return res.status(200).json(userData);
