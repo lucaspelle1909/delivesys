@@ -61,9 +61,9 @@
 						routerPath: "/products",
 					},
 					{
-						title: "Fazer Logout",
-						icon: "mdi-logout",
-						routerPath: "/logout",
+						title: "Entregas",
+						icon: "mdi-store",
+						routerPath: "/DeliveryOrders",
 					},
 				],
 			};

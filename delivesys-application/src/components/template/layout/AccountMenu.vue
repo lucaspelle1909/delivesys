@@ -33,7 +33,8 @@
                 <v-btn
                     depressed
                     rounded
-                    text>
+                    text
+                    @click="logout()">
                     Logout
                 </v-btn>
                 </div>
@@ -54,6 +55,11 @@ export default {
             return this.$store.getters.user
         },
     },
+    methods: {
+        logout() {
+            this.$router.push("/")
+        }
+    }
 }
 </script>
 

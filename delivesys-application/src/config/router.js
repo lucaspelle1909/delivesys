@@ -29,6 +29,13 @@ const Products = () => import(
 	'@/components/products/App.vue'
 )
 
+const DeliveryOrders = () => import(
+	/* webpackMode: "lazy" */
+	/* webpackPreload: true */
+	/* webpackChunkName: "Products" */
+	'@/components/deliveryorders/App.vue'
+)
+
 Vue.use(Router)
 
 const router = new Router({
@@ -52,6 +59,11 @@ const router = new Router({
 		path: '/Products',
 		name: 'Products',
 		component: Products
+	},
+	{
+		path: '/DeliveryOrders',
+		name: 'DeliveryOrders',
+		component: DeliveryOrders
 	}]
 })
 
