@@ -11,6 +11,18 @@ import AppGlobalInicialization from '@/components/template/AppGlobalInicializati
 export default {
 	components:{
 		AppGlobalInicialization
+	},
+	methods: {
+		beforeunloadFn(e) {
+			this.$store.commit('saveUserDataInStore')
+		}
+	},
+	beforeCreate() {
+		this.$store.commit('initialiseStore')
+		window.addEventListener('beforeunload', e => this.beforeunloadFn(e))
+	},
+	destroyed() {
+		window.removeEventListener('beforeunload', e => this.beforeunloadFn(e))
 	}
 }
 </script>

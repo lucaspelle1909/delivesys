@@ -30,12 +30,22 @@ export default {
         }
     },
     mutations: {
+        initialiseStore(state) {
+            if(localStorage.getItem('userStore')) {
+				this.replaceState(
+					Object.assign(state, JSON.parse(localStorage.getItem('userStore')))
+				)
+			}
+		},
         clearToken(state) {
             state.accessToken = null
             state.expirationToken = new Date('01/01/0001 00:00').getTime()
         },
         logoutUser(state) {
             state.isUserLogged = false
+        },
+        saveUserDataInStore(state) {
+            localStorage.setItem('userStore', JSON.stringify(state));
         }
     },
     actions: {
