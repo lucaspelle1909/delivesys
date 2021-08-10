@@ -7,6 +7,8 @@ import cors from "cors";
 import bcrypt from 'bcrypt';
 import sysUserRoutes from './app/router/SysUser';
 import productRoutes from './app/router/Product';
+import clientsRoutes from './app/router/Client';
+import deliveryOrderRoutes from './app/router/DeliveryOrder';
 import AuthController from "./app/controller/Auth";
 
 const app = express();
@@ -24,6 +26,8 @@ app.post("/auth", AuthController.auth);
 app.use(require("./app/middlewares/Auth"));
 app.use("/sysusers", sysUserRoutes);
 app.use("/products", productRoutes);
+app.use("/clients", clientsRoutes);
+app.use('/delivery-orders', deliveryOrderRoutes);
 
 // generate hash
 app.post("/hash", (req, res) => {
