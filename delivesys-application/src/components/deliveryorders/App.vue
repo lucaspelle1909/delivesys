@@ -2,17 +2,17 @@
 	<v-app>
 		<Layout />
 		<v-main>
-			<DeliveryOrders />
+			<DeliveryOrdersTable />
 		</v-main>
 	</v-app>
 </template>
 <script>
 	import Layout from "@/components/template/Layout.vue"
-	import DeliveryOrders from "@/components/deliveryorders/DeliveryOrders.vue"
+	import DeliveryOrdersTable from "@/components/deliveryorders/DeliveryOrdersTable.vue"
 	export default {
 		components: {
 			Layout,
-			DeliveryOrders
+			DeliveryOrdersTable
 		},
 	};
 </script>
