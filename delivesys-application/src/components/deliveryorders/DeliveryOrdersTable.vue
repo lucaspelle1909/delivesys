@@ -64,6 +64,7 @@
             return this.$store.getters.loadingTable
         },
         deliveryOrders(){
+			console.log(this.$store.getters.deliveryOrders)
             return this.$store.getters.deliveryOrders
         }
     },

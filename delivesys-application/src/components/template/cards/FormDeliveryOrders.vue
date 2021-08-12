@@ -6,12 +6,15 @@
 				<v-container>
 					<v-row>
 						<v-col cols="12" sm="6" md="4">
-							<v-text-field
+							<v-select
 								v-model="item.CustAccount"
+								:items="customers"
+								item-text="CustName"
+								item-value="CustAccount"
 								label="Cliente"
-								:rules="[(v) => !!v || 'Este campo não pode ser vazio']"
-								required
-							></v-text-field>
+								persistent-hint
+								return-object
+								single-line />
 						</v-col>
 						<v-col cols="12" sm="6" md="4">
 							<v-text-field
@@ -19,7 +22,7 @@
 								label="Endereço de entrega"
 								:rules="[(v) => !!v || 'Este campo não pode ser vazio']"
 								required
-							></v-text-field>
+							/>
 						</v-col>
 						<v-col cols="12" sm="6" md="4">
 							<v-text-field
@@ -27,25 +30,27 @@
 								label="Data de entrega"
 								:rules="[(v) => !!v || 'Este campo não pode ser vazio']"
 								required
-							></v-text-field>
+							/>
 						</v-col>
 						<v-col cols="12" sm="6" md="4">
-          					<v-autocomplete
+          					<v-select
           						v-model="item.DeliveryStatus"
             					:items="deliveryStatus"
+								item-text="StatusName"
+								item-value="StatusId"
           						label="Status"
           						:rules="[(v) => !!v || 'Este campo não pode ser vazio']"
           						required
-          					></v-autocomplete>
+          					/>
 						</v-col>
 						<v-col cols="12" sm="6" md="4">
 							<v-text-field
 								v-model="item.FreightValue"
-								label="Frete"
+								label="Valor do Frete"
 								:rules="[(v) => !!v || 'Este campo não pode ser vazio']"
 								type="number"
 								required
-							></v-text-field>
+							/>
 						</v-col>
 					</v-row>
 				</v-container>
@@ -79,7 +84,12 @@ export default {
 			showDialog: true,
 			item: {},
 			btnConfirm: "Adicionar",
-			deliveryStatus: ['Criado', 'Em transporte', 'Entregue']
+			deliveryStatus: [
+				{ StatusName: "Aguardando Liberação", StatusId: 1 },
+				{ StatusName: "Aguardando Transporte", StatusId: 2 },
+				{ StatusName: "Em trânsito", StatusId: 4 },
+				{ StatusName: "Entregue", StatusId: 8 }
+			]
         }
     },
 	computed: {
@@ -91,7 +101,9 @@ export default {
 			btnCloseTxt() {
 				return this.mode != 7 ? "Cancelar" : "Fechar";
 			},
-
+			customers(){
+				return this.$store.getters.customers;
+			}
 		},
     methods: {
 		validate() {
@@ -127,6 +139,8 @@ export default {
 				this.item = {...this.$store.getters.getItem};
 				this.btnConfirm = "Salvar";
 			}
+			this.$store.dispatch('getCustomers')
+			this.$store.dispatch('getProducts')
 		},
 	mounted() {
 		document.addEventListener("keydown", (e) => {
