@@ -15,9 +15,7 @@
 							<v-icon>mdi-menu</v-icon>
 						</v-list-item-avatar>
 						<v-list-item-content>
-							<v-list-item-title class="title mt-2 pb-2"
-								>Menu</v-list-item-title
-							>
+							<v-list-item-title class="title mt-2 pb-2">Menu</v-list-item-title>
 						</v-list-item-content>
 					</v-list-item>
 					<v-list-item
@@ -48,21 +46,26 @@
 					{
 						title: "Página Inicial",
 						icon: "mdi-view-dashboard",
-						routerPath: "/home",
+						routerPath: "/Home",
+					},
+					{
+						title: "Clientes",
+						icon: "mdi-face-agent",
+						routerPath: "/Customers",
 					},
 					{
 						title: "Entregadores",
-						icon: "mdi-forum",
+						icon: "mdi-truck-delivery-outline",
 						routerPath: "/DeliverymanTable",
 					},
 					{
 						title: "Produtos",
-						icon: "mdi-store",
-						routerPath: "/products",
+						icon: "mdi-checkbox-intermediate",
+						routerPath: "/Products",
 					},
 					{
 						title: "Entregas",
-						icon: "mdi-store",
+						icon: "mdi-treasure-chest",
 						routerPath: "/DeliveryOrders",
 					},
 				],
@@ -71,7 +74,7 @@
 	};
 </script>
 <style>
-.theme--light.v-list-item--link:not(.v-list-item--disabled) {
+	.theme--light.v-list-item--link:not(.v-list-item--disabled) {
 		padding-left: 15px;
 		padding-right: 0px;
 	}

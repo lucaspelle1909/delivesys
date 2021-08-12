@@ -23,6 +23,14 @@
 						</v-col>
 						<v-col cols="12" sm="6" md="4">
 							<v-text-field
+								v-if='item.deliveryCompany === undefined'
+								v-model="item.CpfCnpj"
+								label="CPF/CNPJ"
+								:rules="[(v) => !!v || 'Este campo não pode ser vazio']"
+								required
+							></v-text-field>
+							<v-text-field
+								v-else
 								v-model="item.deliveryCompany.CpfCnpj"
 								label="CPF/CNPJ"
 								:rules="[(v) => !!v || 'Este campo não pode ser vazio']"

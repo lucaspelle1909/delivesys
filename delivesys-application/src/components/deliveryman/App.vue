@@ -14,8 +14,8 @@
 	export default {
 		components: {
 			AppBar,
-			DeliverymanTable,
-			NavigationDrawer
+			NavigationDrawer,
+			DeliverymanTable
 		},
 	};
 </script>

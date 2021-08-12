@@ -22,10 +22,17 @@ const Home = () => import(
 	'@/components/home/App.vue'
 )
 
+const Customers = () => import(
+	/* webpackMode: "lazy" */
+	/* webpackPreload: true */
+	/* webpackChunkName: "Customers" */
+	'@/components/customers/App.vue'
+)
+
 const DeliverymanTable = () => import(
 	/* webpackMode: "lazy" */
 	/* webpackPreload: true */
-	/* webpackChunkName: "deliverymanTable" */
+	/* webpackChunkName: "DeliverymanTable" */
 	'@/components/deliveryman/App.vue'
 )
 
@@ -39,7 +46,7 @@ const Products = () => import(
 const DeliveryOrders = () => import(
 	/* webpackMode: "lazy" */
 	/* webpackPreload: true */
-	/* webpackChunkName: "Products" */
+	/* webpackChunkName: "DeliveryOrders" */
 	'@/components/deliveryorders/App.vue'
 )
 
@@ -56,6 +63,12 @@ const router = new Router({
 		path: '/Home',
 		name: 'Home',
 		component: Home,
+		meta: { requireLogin: true }
+	},
+	{
+		path: '/Customers',
+		name: 'Customers',
+		component: Customers,
 		meta: { requireLogin: true }
 	},
 	{
