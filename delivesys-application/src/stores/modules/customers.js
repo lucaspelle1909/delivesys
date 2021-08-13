@@ -18,7 +18,7 @@ export default {
                     store.commit('loadingTable', false)
                 })
         },
-        async addCustomers(store, customer){
+        async addCustomer(store, customer){
             await this._vm.$axios.post('/clients', customer)
                 .then(() => {
                     store.dispatch('getCustomers')
@@ -29,7 +29,7 @@ export default {
         },
 
         async updateCustomers(store, customer){
-            await this._vm.$axios.post('/clients', customer)
+            await this._vm.$axios.put('/clients', customer)
                 .then(() => {
                     store.dispatch('getCustomers')
                 })

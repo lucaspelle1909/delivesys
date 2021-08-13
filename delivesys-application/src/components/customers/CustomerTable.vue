@@ -86,11 +86,12 @@
       	},
 
       	deleteCustomers(item) {
+			  console.log(item)
 			var alert = {
 				title: "Remover Cliente",
 				message: "Deseja Remover este Cliente?",
-				callStore: "deleteCustomers",
-				parameterStore: item.UserId,
+				callStore: "deleteCustomer",
+				parameterStore: item.CustAccount,
 			};
         	this.$store.dispatch("openAlertDialog", alert);
       	},
